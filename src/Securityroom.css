@@ -1,6 +1,6 @@
 .security-room-container {
-    width: 100vw;
-    height: 100vh;
+    width: 1900px;
+    height: 205px;
 
     /* border: 2px solid black; */
     display: flex;
@@ -8,6 +8,7 @@
     align-items: center;
 
 }
+
 
 .security-room {
     border: 2px solid black;
@@ -17,5 +18,15 @@
 
 .button {
     width: 105px;
+    height: 204px;
+}
+
+.section2 {
+    border: 1px solid black;
+    height: 205px;
+}
+
+.party-area {
+    width: 900px;
     height: 204px;
 }
