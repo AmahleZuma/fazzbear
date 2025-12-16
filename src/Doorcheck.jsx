@@ -4,6 +4,15 @@ import './Securityroom.css'
 import doorClose from './sfx/doorOpen.mp3';
 import ambience from './sfx/ambience.mp3';
 
+const ROOMS = {
+  SECURITY: { x: 850, y: 0, width: 200, height: 205 },
+  PARTY: { x: 350, y: 205, width: 900, height: 205 },
+  BATHROOM: { x: 1250, y: 205, width: 100, height: 205 },
+  KITCHEN: { x: 350, y: 410, width: 299, height: 205 },
+  STORE: { x: 649, y: 410, width: 299, height: 205 },
+  OFFICE: { x: 948, y: 410, width: 295, height: 205 }
+};
+
 export default function doorCheck(){
 
     // This is game ambience
@@ -57,6 +66,16 @@ export default function doorCheck(){
 
     }
 
+    useEffect(() => {
+        const room = ROOMS.PARTY;
+
+        setfreddypos ({
+            x: room.x + room.width/2,
+            y: room.y + room.height/2
+
+        })
+    }, [])
+
 
 
 
@@ -89,10 +108,9 @@ export default function doorCheck(){
                     </div>
 
                     {/* Freddy*/}
-                    <div className="Freddy" 
-                            style={{
-                            left: freddypos.X,
-                            top: freddypos.Y,
+                    <div className="Freddy"   style={{
+                            left: freddypos.x,
+                            top: freddypos.y
                         }}>
                     </div>
 
