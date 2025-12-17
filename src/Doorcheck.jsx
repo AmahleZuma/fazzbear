@@ -76,8 +76,8 @@ export default function doorCheck(){
             // This places them in the approximate center, might need to look back on this
             // x: room.x + room.width/2,
             // y: room.y + room.height/2
-            x: 100,
-            y: 205
+            x: 1350,
+            y: 410
 
         })
     }, [])
@@ -135,3 +135,25 @@ export default function doorCheck(){
 
     );
 }
+
+
+// Coordinates that will be important for me to remember
+
+
+
+
+/*
+ SECTION 2
+
+    PARTY ROOM:
+        Top-left:     (450, 205)
+        Top-right:    (1350, 205)
+        Bottom-left:  (450, 410)
+        Bottom-right: (1350, 410)
+
+    TOILET
+        Top-left:     (1350, 205)
+        Top-right:    (1455, 205)
+        Bottom-left:  (1350, 410)
+        Bottom-right: (1455, 410)
+*/
