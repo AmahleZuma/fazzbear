@@ -5,15 +5,14 @@ import doorClose from './sfx/doorOpen.mp3';
 import ambience from './sfx/ambience.mp3';
 
 
-// Room dimensions based on CSS
+// Room dimensions based on Game world position
 const ROOMS = {
-  SECURITY: { x: 850, y: 0, width: 200, height: 205 },
-  PARTY: { x: 350, y: 205, width: 900, height: 205 },
-  BATHROOM: { x: 1250, y: 205, width: 100, height: 205 },
-  KITCHEN: { x: 350, y: 410, width: 299, height: 205 },
-  STORE: { x: 649, y: 410, width: 299, height: 205 },
-  OFFICE: { x: 948, y: 410, width: 295, height: 205 },
-  BEGIN: {x: 0, y: 0, width: 1904, height: 615}, // Turns the game space into a room...for debuggin purposes
+  SECURITY: { x: 755, y: 0, width: 390, height: 205 },
+  PARTY: { x: 450, y: 205, width: 900, height: 205 },
+  TOILET: { x: 1350, y: 205, width: 105, height: 205 },
+  KITCHEN: { x: 450, y: 410, width: 300, height: 205 },
+  STORE: { x: 750, y: 410, width: 305, height: 205 },
+  OFFICE: { x: 1055, y: 410, width: 295, height: 205 }
 };
 
 export default function doorCheck(){
@@ -76,8 +75,8 @@ export default function doorCheck(){
             // This places them in the approximate center, might need to look back on this
             // x: room.x + room.width/2,
             // y: room.y + room.height/2
-            x: 1350,
-            y: 410
+            x: 1150,
+            y: 0
 
         })
     }, [])
@@ -141,6 +140,17 @@ export default function doorCheck(){
 
 
 
+/*
+ SECTION 1
+
+ SECURITY ROOM:
+        Top-left:     (755, 0)
+        Top-right:    (1145, 0)
+        Bottom-left:  (755, 205)
+        Bottom-right: (1145, 205)
+
+*/
+
 
 /*
  SECTION 2
@@ -156,4 +166,29 @@ export default function doorCheck(){
         Top-right:    (1455, 205)
         Bottom-left:  (1350, 410)
         Bottom-right: (1455, 410)
+
+*/
+
+/*
+ SECTION 3
+    
+    KITCHEN:
+        Top-left:     (450, 410)   
+        Top-right:    (750, 410)
+        Bottom-left:  (450, 615)
+        Bottom-right: (750, 615)   
+
+
+    STORE AREA:
+        Top-left:     (750, 410)
+        Top-right:    (1055, 410)
+        Bottom-left:  (750, 615)
+        Bottom-right: (1055, 615) 
+
+    OFFICE:
+        Top-left:     (1055, 410)
+        Top-right:    (1350, 410)
+        Bottom-left:  (1055, 615)
+        Bottom-right: (1350, 615)
+
 */
