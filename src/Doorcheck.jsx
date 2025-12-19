@@ -193,3 +193,6 @@ export default function doorCheck(){
         Bottom-right: (1350, 615)
 
 */
+
+// Point in Circle:
+// Given that Freddy is at position (x;y), which room is Freddy in at the moment? 
