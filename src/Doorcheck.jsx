@@ -91,8 +91,8 @@ export default function doorCheck(){
             // This places them in the approximate center, might need to look back on this
             // x: room.x + room.width/2,
             // y: room.y + room.height/2
-            x: 1150,
-            y: 0
+            x: 500,
+            y: 300
 
         })
     }, [])
@@ -104,7 +104,7 @@ export default function doorCheck(){
 
     // Running test
     console.log(
-        isAnimatronicInRoom(aniPos, ROOMS.PARTY)
+        isAnimatronicInRoom(freddypos, ROOMS.PARTY)
     );
 
 
