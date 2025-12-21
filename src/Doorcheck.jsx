@@ -35,6 +35,9 @@ export default function doorCheck(){
     // This sets Freddy's position
     const [freddypos, setfreddypos] = useState({x: 0, y: 0});
 
+    // Testing if the function works
+    const aniPos = {x:500, y: 300}
+
 
 
     function changeDoor1() {
@@ -98,6 +101,11 @@ export default function doorCheck(){
     useEffect(() => {
         console.log(freddypos);
     }, [freddypos]);
+
+    // Running test
+    console.log(
+        isAnimatronicInRoom(aniPos, ROOMS.PARTY)
+    );
 
 
 
