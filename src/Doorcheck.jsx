@@ -69,6 +69,18 @@ export default function doorCheck(){
 
     }
 
+    // Will look at the animatronics position relative to the rooms coordinates and decide on whether or not it is in that room
+    function isAnimatronicInRoom(animatronicPos, room) {
+
+        // Returns True for if within room, else False
+        return(
+            animatronicPos.x >= room.x &&                                   // Left
+            animatronicPos.x <= room.x + room.width &&                     // Right
+            animatronicPos.y >= room.y &&                                 // Top
+            animatronicPos.y <= room.y + room.height                      // Bottom
+        );
+    }
+
     useEffect(() => {
         const room = ROOMS.BEGIN;
 
