@@ -156,6 +156,27 @@ export default function doorCheck(){
                         }}>
                     </div>
 
+                    {/* Foxy*/}
+                    <div className="Foxy"   style={{
+                            left: foxyPos.x,
+                            top: foxyPos.y
+                        }}>
+                    </div>
+
+                    {/* Chica*/}
+                    <div className="Chica"   style={{
+                            left: chicaPos.x,
+                            top: chicaPos.y
+                        }}>
+                    </div>
+
+                    {/* Bonny*/}
+                    <div className="Bonnie"   style={{
+                            left: bonnyPos.x,
+                            top: bonnyPos.y
+                        }}>
+                    </div>
+
 
                 </div>
             </>
