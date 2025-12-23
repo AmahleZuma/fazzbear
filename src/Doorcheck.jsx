@@ -36,13 +36,13 @@ export default function doorCheck(){
     const [freddypos, setfreddypos] = useState({x: 0, y: 0});
 
     // This sets Foxy's position
-    const [foxyPos, setfoxyPos] = useState({x:0, y:0});
+    const [foxyPos, setfoxyPos] = useState({x:20, y:0});
 
     // This sets Chica's position
-    const [chicaPos, setchicaPos] = useState({x:0, y:0});
+    const [chicaPos, setchicaPos] = useState({x:25, y:0});
 
     // This sets Bonny's position
-    const [bonnyPos, setbonnyPos] = useState({x:0, y:0});
+    const [bonnyPos, setbonnyPos] = useState({x:50, y:0});
 
     // Testing if the function works
     const aniPos = {x:500, y: 300}
