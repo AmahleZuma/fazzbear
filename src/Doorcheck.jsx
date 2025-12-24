@@ -24,6 +24,7 @@ const DANGER = {
 
 
 
+
 export default function doorCheck(){
 
     // This is game ambience
@@ -54,6 +55,14 @@ export default function doorCheck(){
 
     // Testing if the function works
     const aniPos = {x:500, y: 300}
+
+    // I don't want to duplicate game logic
+    const animatronics = [
+        {name: "Freddy", pos: freddypos},
+        {name: "Foxy", pos: foxyPos},
+        {name: "Chica", pos: chicaPos},
+        {name: "Bonny", pos: bonnyPos}
+    ];
 
 
 
@@ -115,7 +124,6 @@ export default function doorCheck(){
     //Should insert animatronic AI logic here(how they'll move on their own)
 
     useEffect(() => {
-        const room = ROOMS.BEGIN;
 
         setfreddypos ({
             // This places them in the approximate center, might need to look back on this
@@ -173,6 +181,7 @@ export default function doorCheck(){
                             left: freddypos.x,
                             top: freddypos.y
                         }}>
+                            Freddy
                     </div>
 
                     {/* Foxy*/}
@@ -180,6 +189,7 @@ export default function doorCheck(){
                             left: foxyPos.x,
                             top: foxyPos.y
                         }}>
+                            Foxy
                     </div>
 
                     {/* Chica*/}
@@ -187,6 +197,7 @@ export default function doorCheck(){
                             left: chicaPos.x,
                             top: chicaPos.y
                         }}>
+                            Chica
                     </div>
 
                     {/* Bonny*/}
@@ -194,6 +205,7 @@ export default function doorCheck(){
                             left: bonnyPos.x,
                             top: bonnyPos.y
                         }}>
+                            Bonny
                     </div>
 
 
