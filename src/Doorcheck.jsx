@@ -5,6 +5,7 @@ import doorClose from './sfx/doorOpen.mp3';
 import ambience from './sfx/ambience.mp3';
 
 
+
 // Room dimensions based on Game world position
 // Not pixel perfect, but logical enough that the animatronic movement makes sense
 const ROOMS = {
@@ -123,6 +124,18 @@ export default function doorCheck(){
     }
 
     //Should insert animatronic AI logic here(how they'll move on their own)
+    // We dont have an engine designated loop function so we make our own using this
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setfreddypos( prev => ({
+                x: prev.x + 1, // just moving him right
+                y: prev.y
+            }))
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, [])
+
 
     useEffect(() => {
 
