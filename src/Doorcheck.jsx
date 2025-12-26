@@ -51,7 +51,7 @@ export default function doorCheck(){
     const [chicaPos, setchicaPos] = useState({x:250, y:0});
 
     // This sets Bonny's position
-    const [bonnyPos, setbonnyPos] = useState({x:1450, y:0});
+    const [bonnyPos, setbonnyPos] = useState({x:0, y:0});
 
     // Testing if the function works
     const aniPos = {x:500, y: 300}
@@ -85,6 +85,7 @@ export default function doorCheck(){
         playdoorClose();
     };
 
+    // Toggle on or off for background noise
     function playBackground() {
         setambienceMode(prev => {
             if (prev === "OFF") {
@@ -110,7 +111,7 @@ export default function doorCheck(){
         );
     }
 
-    function isAnimatronicinDangerZone(animatronicPos, space, door){
+    function isAnimatronicinDangerZone(animatronicPos, space){
         // Return true if so
         return(
             animatronicPos.x >= space.x &&
@@ -130,7 +131,7 @@ export default function doorCheck(){
             // x: room.x + room.width/2,
             // y: room.y + room.height/2
             x: 500,
-            y: 300
+            y: 200
 
         })
     }, [])
@@ -144,6 +145,20 @@ export default function doorCheck(){
     console.log(
         isAnimatronicInRoom(freddypos, ROOMS.PARTY)
     );
+
+    console.log(
+       `Freddy is ${isAnimatronicinDangerZone(freddypos, DANGER.DOOR1)}` 
+    )
+
+    // Looping through the animatronics to see which one is in the danger zone
+    animatronics.forEach(a => {
+        if (isAnimatronicinDangerZone(a.pos, DANGER.DOOR1) && doorStatus1==="OPEN") {
+            console.log(`GAME OVER - ${a.name} killed you`)
+        }
+        if (isAnimatronicinDangerZone(a.pos, DANGER.DOOR2) && doorStatus1==="OPEN") {
+            console.log(`GAME OVER - ${a.name} killed you`)
+        }
+    })
 
 
 
