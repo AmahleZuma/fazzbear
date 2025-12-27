@@ -34,13 +34,18 @@ export default function doorCheck(){
     // This is the toggle button for the game ambience
     const [ambienceMode, setambienceMode] = useState("OFF")
 
-
+    // Door 1
     const [doorStatus1, setdoorStatus1] = useState("OPEN");
+
     // If you dont make a separate variable, both elements are affected at once
+    // Door 2
     const [doorStatus2, setdoorStatus2] = useState("OPEN");
 
     // This plays the door sound
     const [playdoorClose] = useSound(doorClose, {volume: 1});
+
+    // Security Guard position
+    const [securityPos, setsecurityPos] = useState({x:0, y:0});
 
     // This sets Freddy's position
     const [freddypos, setfreddypos] = useState({x: 0, y: 0});
@@ -53,6 +58,7 @@ export default function doorCheck(){
 
     // This sets Bonny's position
     const [bonnyPos, setbonnyPos] = useState({x:0, y:0});
+
 
     // Testing if the function works
     const aniPos = {x:500, y: 300}
@@ -127,10 +133,30 @@ export default function doorCheck(){
     // We dont have an engine designated loop function so we make our own using this
     useEffect(() => {
         const interval = setInterval(() => {
+
+
             setfreddypos( prev => ({
-                x: prev.x + 1, // just moving him right
+                x: prev.x + 10, // just moving him right
                 y: prev.y
             }))
+
+            setbonnyPos(prev => ({
+                x: prev.x + 10,
+                y: prev.y
+            }))
+
+            setchicaPos(prev => ({
+                x: prev.x + 10,
+                y: prev.y
+            }))
+
+            setfoxyPos(prev => ({
+                x: prev.x + 10,
+                y: prev.y
+            }))
+
+
+
         }, 1000)
 
         return () => clearInterval(interval)
@@ -147,21 +173,36 @@ export default function doorCheck(){
             y: 200
 
         })
+
+
+        // Hard coding security guards position for reference purposes
+        setsecurityPos ({
+            // x: ROOMS.SECURITY.x + ROOMS.SECURITY.width/2,
+            // y: ROOMS.SECURITY.y + ROOMS.SECURITY.height/2
+
+            x: 925,
+            y: 95
+        })
     }, [])
 
     // This will log the position of freddy (top left) according to (x; y) so the room can be measured properly
-    useEffect(() => {
-        console.log(freddypos);
-    }, [freddypos]);
+    // useEffect(() => {
+    //     console.log(freddypos);
+    // }, [freddypos]);
 
     // Running test
-    console.log(
-        isAnimatronicInRoom(freddypos, ROOMS.PARTY)
-    );
+    // console.log(
+    //     isAnimatronicInRoom(freddypos, ROOMS.PARTY)
+    // );
 
-    console.log(
-       `Freddy is ${isAnimatronicinDangerZone(freddypos, DANGER.DOOR1)}` 
-    )
+    // Checking for exact sexurity guard coordinates
+    // console.log(
+    //     `x:${securityPos.x}, y:${securityPos.y}`
+    // )
+
+    // console.log(
+    //    `Freddy is ${isAnimatronicinDangerZone(freddypos, DANGER.DOOR1)}` 
+    // )
 
     // Looping through the animatronics to see which one is in the danger zone
     animatronics.forEach(a => {
@@ -234,6 +275,14 @@ export default function doorCheck(){
                             top: bonnyPos.y
                         }}>
                             Bonny
+                    </div>
+
+                    {/* Guard */}
+                    <div className="Guard"   style={{
+                            left: securityPos.x,
+                            top: securityPos.y
+                        }}>
+                            Guard
                     </div>
 
 
