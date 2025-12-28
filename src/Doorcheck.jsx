@@ -14,7 +14,8 @@ const ROOMS = {
   TOILET: { x: 1350, y: 205, width: 105, height: 205 },
   KITCHEN: { x: 450, y: 410, width: 300, height: 205 },
   STORE: { x: 750, y: 410, width: 305, height: 205 },
-  OFFICE: { x: 1055, y: 410, width: 295, height: 205 }
+  OFFICE: { x: 1055, y: 410, width: 295, height: 205 },
+  TARGET: {x:950, y:102.5}
 };
 
 // This is the space in front of the door, if the animatronic reaches and the door is open...GAME OVER
@@ -48,16 +49,16 @@ export default function doorCheck(){
     const [securityPos, setsecurityPos] = useState({x:0, y:0});
 
     // This sets Freddy's position
-    const [freddypos, setfreddypos] = useState({x: 0, y: 0});
+    const [freddypos, setfreddypos] = useState({x: 1300, y: 550});
 
     // This sets Foxy's position
-    const [foxyPos, setfoxyPos] = useState({x:20, y:0});
+    const [foxyPos, setfoxyPos] = useState({x:1400, y:350});
 
     // This sets Chica's position
-    const [chicaPos, setchicaPos] = useState({x:250, y:0});
+    const [chicaPos, setchicaPos] = useState({x:500, y:570});
 
     // This sets Bonny's position
-    const [bonnyPos, setbonnyPos] = useState({x:0, y:0});
+    const [bonnyPos, setbonnyPos] = useState({x:800, y:470});
 
 
     // Testing if the function works
@@ -136,24 +137,10 @@ export default function doorCheck(){
 
 
             setfreddypos( prev => ({
-                x: prev.x + 10, // just moving him right
-                y: prev.y
+                x: prev.x - ROOMS.TARGET.x,
+                y: prev.y - ROOMS.TARGET.y  
             }))
 
-            setbonnyPos(prev => ({
-                x: prev.x + 10,
-                y: prev.y
-            }))
-
-            setchicaPos(prev => ({
-                x: prev.x + 10,
-                y: prev.y
-            }))
-
-            setfoxyPos(prev => ({
-                x: prev.x + 10,
-                y: prev.y
-            }))
 
 
 
@@ -164,45 +151,13 @@ export default function doorCheck(){
 
 
     useEffect(() => {
-
-        setfreddypos ({
-            // This places them in the approximate center, might need to look back on this
-            // x: room.x + room.width/2,
-            // y: room.y + room.height/2
-            x: 500,
-            y: 200
-
-        })
-
-
         // Hard coding security guards position for reference purposes
         setsecurityPos ({
-            // x: ROOMS.SECURITY.x + ROOMS.SECURITY.width/2,
-            // y: ROOMS.SECURITY.y + ROOMS.SECURITY.height/2
-
             x: 925,
             y: 95
         })
     }, [])
 
-    // This will log the position of freddy (top left) according to (x; y) so the room can be measured properly
-    // useEffect(() => {
-    //     console.log(freddypos);
-    // }, [freddypos]);
-
-    // Running test
-    // console.log(
-    //     isAnimatronicInRoom(freddypos, ROOMS.PARTY)
-    // );
-
-    // Checking for exact sexurity guard coordinates
-    // console.log(
-    //     `x:${securityPos.x}, y:${securityPos.y}`
-    // )
-
-    // console.log(
-    //    `Freddy is ${isAnimatronicinDangerZone(freddypos, DANGER.DOOR1)}` 
-    // )
 
     // Looping through the animatronics to see which one is in the danger zone
     animatronics.forEach(a => {
@@ -297,63 +252,3 @@ export default function doorCheck(){
 }
 
 
-// Coordinates that will be important for me to remember
-
-
-
-/*
- SECTION 1
-
- SECURITY ROOM:
-        Top-left:     (755, 0)
-        Top-right:    (1145, 0)
-        Bottom-left:  (755, 205)
-        Bottom-right: (1145, 205)
-
-*/
-
-
-/*
- SECTION 2
-
-    PARTY ROOM:
-        Top-left:     (450, 205)
-        Top-right:    (1350, 205)
-        Bottom-left:  (450, 410)
-        Bottom-right: (1350, 410)
-
-    TOILET
-        Top-left:     (1350, 205)
-        Top-right:    (1455, 205)
-        Bottom-left:  (1350, 410)
-        Bottom-right: (1455, 410)
-
-*/
-
-/*
- SECTION 3
-    
-    KITCHEN:
-        Top-left:     (450, 410)   
-        Top-right:    (750, 410)
-        Bottom-left:  (450, 615)
-        Bottom-right: (750, 615)   
-
-
-    STORE AREA:
-        Top-left:     (750, 410)
-        Top-right:    (1055, 410)
-        Bottom-left:  (750, 615)
-        Bottom-right: (1055, 615) 
-
-    OFFICE:
-        Top-left:     (1055, 410)
-        Top-right:    (1350, 410)
-        Bottom-left:  (1055, 615)
-        Bottom-right: (1350, 615)
-
-*/
-
-// Point in Circle:
-// Given that Freddy is at position (x;y), which room is Freddy in at the moment? 
-// A point is inside a room if point x is between left and right AND point y is between top and bottom
