@@ -135,11 +135,18 @@ export default function doorCheck(){
     useEffect(() => {
         const interval = setInterval(() => {
 
-
+            // Telling freddy to move
             setfreddypos( prev => ({
-                x: prev.x - ROOMS.TARGET.x,
-                y: prev.y - ROOMS.TARGET.y  
+                x: prev.x + 10 ,
+                y: prev.y - 10  
             }))
+
+            setfreddypos(
+                {
+                    x: ROOMS.TARGET.x,
+                    y: ROOMS.TARGET.y
+                }
+            )
 
 
 
