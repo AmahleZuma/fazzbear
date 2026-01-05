@@ -60,6 +60,9 @@ export default function doorCheck() {
     // This sets Foxy's position
     const [foxyPos, setfoxyPos] = useState({ x: 1400, y: 350 });
 
+    // Foxy ref position
+    const foxyRef = useRef({ x: 1400, y: 350 })
+
     // This sets Chica's position
     const [chicaPos, setchicaPos] = useState({ x: 500, y: 570 });
 
@@ -140,7 +143,7 @@ export default function doorCheck() {
     // We dont have an engine designated loop function so we make our own using this
     useEffect(() => {
 
-        const speed = 10;
+        const speed = 5;
         const interval = setInterval(() => {
 
             // Calculating the difference between the security guard and freddy...the direction
@@ -169,8 +172,35 @@ export default function doorCheck() {
 
 
 
+
+
         return () => clearInterval(interval)
-    }, [doorStatus1, doorStatus2])
+    })
+
+    useEffect(() => {
+                // Testing if this works on foxy
+        const foxySpeed = 10;
+        const foxyInterval = setInterval(() => {
+            
+            const dx = securityRef.current.x - foxyRef.current.x;
+            const dy = securityRef.current.y - foxyRef.current.y;
+
+            const distance = Math.sqrt(dx**2 + dy**2);
+
+            const nx = dx/distance;
+            const ny = dy/distance;
+
+            foxyRef.current.x += nx * foxySpeed;
+            foxyRef.current.y += ny * foxySpeed;
+
+            setfoxyPos({...foxyRef.current})
+
+
+
+        }, 50);
+
+        return () => clearInterval(foxyInterval)
+    })
 
 
 
