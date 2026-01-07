@@ -15,15 +15,19 @@ const ROOMS = {
     KITCHEN: { x: 450, y: 410, width: 300, height: 205 },
     STORE: { x: 750, y: 410, width: 305, height: 205 },
     OFFICE: { x: 1055, y: 410, width: 295, height: 205 },
-    TARGET: { x: 950, y: 102.5 }
-};
-
-// This is the space in front of the door, if the animatronic reaches and the door is open...GAME OVER
-const DANGER = {
+    TARGET: { x: 950, y: 102.5 },
     DOOR1: { x: 450, y: 0, width: 300, height: 205 },
     DOOR2: { x: 1150, y: 0, width: 300, height: 205 }
-}
+};
 
+// sorts rooms into arrays
+const roomsArray = Object.keys(ROOMS)
+
+// Creates index to pick from
+const roomsIndex = Math.floor(Math.random() * roomsArray.length);
+
+// Random room will be picked
+const rooms = roomsArray[roomsIndex]
 
 
 
@@ -37,6 +41,9 @@ export default function doorCheck() {
 
     // Door 1
     const [doorStatus1, setdoorStatus1] = useState("OPEN");
+
+    // Door 1 ref
+    const door1 = useRef({x:450, y:0});
 
     // If you dont make a separate variable, both elements are affected at once
     // Door 2
@@ -65,6 +72,9 @@ export default function doorCheck() {
 
     // This sets Chica's position
     const [chicaPos, setchicaPos] = useState({ x: 500, y: 570 });
+
+    // Chica ref position
+    const chicaRef = useRef({x:500,y:570})
 
     // This sets Bonny's position
     const [bonnyPos, setbonnyPos] = useState({ x: 800, y: 470 });
@@ -141,65 +151,117 @@ export default function doorCheck() {
 
     //Should insert animatronic AI logic here(how they'll move on their own)
     // We dont have an engine designated loop function so we make our own using this
-    useEffect(() => {
+    // useEffect(() => {
 
-        const speed = 5;
-        const interval = setInterval(() => {
+    //     const speed = 5;
+    //     const interval = setInterval(() => {
 
-            // Calculating the difference between the security guard and freddy...the direction
-            const dx = securityRef.current.x - freddyRef.current.x;
-            const dy = securityRef.current.y - freddyRef.current.y;
-
-
-            // Calculating the distance between security guard and freddy
-            const distance = Math.sqrt(dx ** 2 + dy ** 2)
-
-            // Breaking the difference into small unit steps freddy will take at a time
-            const nx = dx / distance;
-            const ny = dy / distance;
-
-            // Getting freddy to move
-            freddyRef.current.x += nx * speed;
-            freddyRef.current.y += ny * speed;
+    //         // Calculating the difference between the security guard and freddy...the direction
+    //         const dx = securityRef.current.x - freddyRef.current.x;
+    //         const dy = securityRef.current.y - freddyRef.current.y;
 
 
-            setfreddypos({...freddyRef.current})
+    //         // Calculating the distance between security guard and freddy
+    //         const distance = Math.sqrt(dx ** 2 + dy ** 2)
+
+    //         // Breaking the difference into small unit steps freddy will take at a time
+    //         const nx = dx / distance;
+    //         const ny = dy / distance;
+
+    //         // Getting freddy to move
+    //         freddyRef.current.x += nx * speed;
+    //         freddyRef.current.y += ny * speed;
 
 
-            console.log(`Freddypos: x-${freddyRef.current.x}; y-${freddyRef.current.y}`)
-
-        }, 50);
+    //         setfreddypos({...freddyRef.current})
 
 
+    //         console.log(`Freddypos: x-${freddyRef.current.x}; y-${freddyRef.current.y}`)
+
+    //     }, 50);
 
 
 
 
-        return () => clearInterval(interval)
-    })
 
-    useEffect(() => {
-                // Testing if this works on foxy
-        const foxySpeed = 10;
-        const foxyInterval = setInterval(() => {
+
+    //     return () => clearInterval(interval)
+    // })
+
+    // useEffect(() => {
+    //             // Testing if this works on foxy
+    //     const foxySpeed = 10;
+    //     const foxyInterval = setInterval(() => {
             
-            const dx = securityRef.current.x - foxyRef.current.x;
-            const dy = securityRef.current.y - foxyRef.current.y;
+    //         const dx = securityRef.current.x - foxyRef.current.x;
+    //         const dy = securityRef.current.y - foxyRef.current.y;
+
+    //         const distance = Math.sqrt(dx**2 + dy**2);
+
+    //         const nx = dx/distance;
+    //         const ny = dy/distance;
+
+    //         foxyRef.current.x += nx * foxySpeed;
+    //         foxyRef.current.y += ny * foxySpeed;
+
+    //         setfoxyPos({...foxyRef.current})
+
+
+    //     }, 50);
+
+    //     return () => clearInterval(foxyInterval)
+    // })
+
+
+    // Chica's AI
+    useEffect(() => {
+
+        const aggression = 5 // no clue wht to do with this, just putting it here
+        const roamSpeed = 4
+        const sprintSpeed = 10
+
+        // WAIT
+        const chicaWait = setInterval(() => {
+            // uhm do nothing?
+        }, 13000)
+
+        // ROAM
+        const chicaRoam = setInterval(() => {
+            const dx = rooms.x - chicaRef.current.x;
+            const dy = rooms.y - chicaRef.current.y;
 
             const distance = Math.sqrt(dx**2 + dy**2);
 
             const nx = dx/distance;
             const ny = dy/distance;
 
-            foxyRef.current.x += nx * foxySpeed;
-            foxyRef.current.y += ny * foxySpeed;
+            chicaRef.current.x += nx * roamSpeed;
+            chicaRef.current.y += ny * roamSpeed;
 
-            setfoxyPos({...foxyRef.current})
+            setchicaPos({...chicaRef.current})
+        },50)
 
+        // Sprint
+        const chicaSprint = setInterval(() => {
+            const dx = door1.current.x - chicaRef.current.x;
+            const dy = door1.current.y - chicaRef.current.y;
 
-        }, 50);
+            const distance = Math.sqrt(dx**2 + dy**2);
 
-        return () => clearInterval(foxyInterval)
+            const nx = dx/distance;
+            const ny = dy/distance;
+
+            chicaRef.current.x += nx * sprintSpeed;
+            chicaRef.current.y += ny * sprintSpeed;
+
+            setchicaPos({...chicaRef.current})
+        },50)
+
+        chicaWait;
+        chicaRoam;
+        chicaSprint;
+        
+
     })
 
 
