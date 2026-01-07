@@ -255,9 +255,30 @@ export default function doorCheck() {
         //     setchicaPos({...chicaRef.current})
         // },50)
 
-        const waitcheck = () => {console.log("Wait is finished")}
-        currentState = setTimeout(waitcheck, 13000);
+        const waitcheck = () => {
+            console.log("Wait is finished")
+
+            // ROAM
+            const chicaRoam = setInterval(() => {
+                const dx = ROOMS[rooms].x - chicaRef.current.x;
+                const dy = ROOMS[rooms].y - chicaRef.current.y;
+
+                const distance = Math.sqrt(dx**2 + dy**2);
+
+                const nx = dx/distance;
+                const ny = dy/distance;
+
+                chicaRef.current.x += nx * roamSpeed;
+                chicaRef.current.y += ny * roamSpeed;
+
+                setchicaPos({...chicaRef.current})
+            },50)
         
+        
+        
+        }
+        currentState = setTimeout(waitcheck, 13000);
+
         
         
 
