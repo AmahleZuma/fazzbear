@@ -9,16 +9,19 @@ import ambience from './sfx/ambience.mp3';
 // Room dimensions based on Game world position
 // Not pixel perfect, but logical enough that the animatronic movement makes sense
 const ROOMS = {
-    SECURITY: { x: 755, y: 0, width: 390, height: 205 },
+    // SECURITY: { x: 755, y: 0, width: 390, height: 205 },
     PARTY: { x: 450, y: 205, width: 900, height: 205 },
     TOILET: { x: 1350, y: 205, width: 105, height: 205 },
     KITCHEN: { x: 450, y: 410, width: 300, height: 205 },
     STORE: { x: 750, y: 410, width: 305, height: 205 },
     OFFICE: { x: 1055, y: 410, width: 295, height: 205 },
     TARGET: { x: 950, y: 102.5 },
+};
+
+const DANGERZONES = {
     DOOR1: { x: 450, y: 0, width: 300, height: 205 },
     DOOR2: { x: 1150, y: 0, width: 300, height: 205 }
-};
+}
 
 // sorts rooms into arrays
 const roomsArray = Object.keys(ROOMS)
@@ -221,49 +224,35 @@ export default function doorCheck() {
         const sprintSpeed = 10;
         let currentState;
 
+        // This will help me get the range so chica wont go to a specific coordinate but more inside the space
+        const maxValX = ROOMS[rooms].x + ROOMS[rooms].width;
+        const minValX = ROOMS[rooms].x
+
+        const maxValY = ROOMS[rooms].y + ROOMS[rooms].height;
+        const minValY = ROOMS[rooms].y
+
+        const rangeX = maxValX - minValX;
+        const rangeY = maxValY - minValY;
+
+        // Creates a random width and height to add to the minimum => 
+        const randWidth = Math.floor(Math.random() * (rangeX + 1));
+        const randHeight = Math.floor(Math.random() * (rangeY + 1));
+
+        // Chica will go to a random location inside a room not a specific coordinate
+        const roomX = randWidth + minValX;
+        const roomY = randHeight + minValY
 
 
-        // // ROAM
-        // const chicaRoam = setInterval(() => {
-        //     const dx = rooms.x - chicaRef.current.x;
-        //     const dy = rooms.y - chicaRef.current.y;
 
-        //     const distance = Math.sqrt(dx**2 + dy**2);
-
-        //     const nx = dx/distance;
-        //     const ny = dy/distance;
-
-        //     chicaRef.current.x += nx * roamSpeed;
-        //     chicaRef.current.y += ny * roamSpeed;
-
-        //     setchicaPos({...chicaRef.current})
-        // },50)
-
-        // // Sprint
-        // const chicaSprint = setInterval(() => {
-        //     const dx = door1.current.x - chicaRef.current.x;
-        //     const dy = door1.current.y - chicaRef.current.y;
-
-        //     const distance = Math.sqrt(dx**2 + dy**2);
-
-        //     const nx = dx/distance;
-        //     const ny = dy/distance;
-
-        //     chicaRef.current.x += nx * sprintSpeed;
-        //     chicaRef.current.y += ny * sprintSpeed;
-
-        //     setchicaPos({...chicaRef.current})
-        // },50)
 
         const waitcheck = () => {
             console.log("Wait is finished")
 
             // ROAM
             const chicaRoam = setInterval(() => {
-                // need to get her to go to a random area in a room not the specific coordinates
-                // range?
-                const dx = ROOMS[rooms].x - chicaRef.current.x;
-                const dy = ROOMS[rooms].y - chicaRef.current.y;
+                
+                const dx = roomX - chicaRef.current.x;
+                const dy = roomY - chicaRef.current.y;
 
                 const distance = Math.sqrt(dx**2 + dy**2);
 
@@ -274,7 +263,18 @@ export default function doorCheck() {
                 chicaRef.current.y += ny * roamSpeed;
 
                 setchicaPos({...chicaRef.current})
+
+                // Back to wait but wait how the fuck do i loop this without hard coding
+                if (distance <= 15) {
+                    console.log("ARRIVED. Stopping Interval....");
+                    clearInterval(chicaRoam);
+                    setTimeout(waitcheck, 13000)
+                }
+
+                console.log(`${chicaPos.x} : ${chicaPos.y}`);
+                
             },50)
+            
         
         
         
