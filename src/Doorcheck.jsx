@@ -51,26 +51,12 @@ export default function doorCheck() {
     // If THIS does not work I'm jumping in a vat of acid
     const securityRef = useRef({ x: 925, y: 95 })
 
-    // This sets Freddy's position
-    const [freddypos, setfreddypos] = useState({ x: 1300, y: 550 });
-
-    // If this does not work I'll drink bleach
-    const freddyRef = useRef({ x: 1300, y: 550 })
-
-    // This sets Foxy's position
-    const [foxyPos, setfoxyPos] = useState({ x: 1400, y: 350 });
-
-    // Foxy ref position
-    const foxyRef = useRef({ x: 1400, y: 350 })
 
     // This sets Chica's position
     const [chicaPos, setchicaPos] = useState({ x: 500, y: 570 });
 
     // Chica ref position
     const chicaRef = useRef({x:500,y:570})
-
-    // This sets Bonny's position
-    const [bonnyPos, setbonnyPos] = useState({ x: 800, y: 470 });
 
 
     // Testing if the function works
@@ -142,68 +128,10 @@ export default function doorCheck() {
 
     }
 
-    //Should insert animatronic AI logic here(how they'll move on their own)
-    // We dont have an engine designated loop function so we make our own using this
-    // useEffect(() => {
-
-    //     const speed = 5;
-    //     const interval = setInterval(() => {
-
-    //         // Calculating the difference between the security guard and freddy...the direction
-    //         const dx = securityRef.current.x - freddyRef.current.x;
-    //         const dy = securityRef.current.y - freddyRef.current.y;
-
-
-    //         // Calculating the distance between security guard and freddy
-    //         const distance = Math.sqrt(dx ** 2 + dy ** 2)
-
-    //         // Breaking the difference into small unit steps freddy will take at a time
-    //         const nx = dx / distance;
-    //         const ny = dy / distance;
-
-    //         // Getting freddy to move
-    //         freddyRef.current.x += nx * speed;
-    //         freddyRef.current.y += ny * speed;
-
-
-    //         setfreddypos({...freddyRef.current})
-
-
-    //         console.log(`Freddypos: x-${freddyRef.current.x}; y-${freddyRef.current.y}`)
-
-    //     }, 50);
 
 
 
 
-
-
-    //     return () => clearInterval(interval)
-    // })
-
-    // useEffect(() => {
-    //             // Testing if this works on foxy
-    //     const foxySpeed = 10;
-    //     const foxyInterval = setInterval(() => {
-            
-    //         const dx = securityRef.current.x - foxyRef.current.x;
-    //         const dy = securityRef.current.y - foxyRef.current.y;
-
-    //         const distance = Math.sqrt(dx**2 + dy**2);
-
-    //         const nx = dx/distance;
-    //         const ny = dy/distance;
-
-    //         foxyRef.current.x += nx * foxySpeed;
-    //         foxyRef.current.y += ny * foxySpeed;
-
-    //         setfoxyPos({...foxyRef.current})
-
-
-    //     }, 50);
-
-    //     return () => clearInterval(foxyInterval)
-    // })
 
 
     // Chica's AI
@@ -344,22 +272,6 @@ export default function doorCheck() {
                         <div className="office"></div>
                     </div>
 
-                    {/* Freddy*/}
-                    <div className="Freddy" style={{
-                        left: freddyRef.current.x,
-                        top: freddyRef.current.y
-                    }}>
-                        Freddy
-                    </div>
-
-                    {/* Foxy*/}
-                    <div className="Foxy" style={{
-                        left: foxyPos.x,
-                        top: foxyPos.y
-                    }}>
-                        Foxy
-                    </div>
-
                     {/* Chica*/}
                     <div className="Chica" style={{
                         left: chicaPos.x,
@@ -368,13 +280,6 @@ export default function doorCheck() {
                         Chica
                     </div>
 
-                    {/* Bonny*/}
-                    <div className="Bonny" style={{
-                        left: bonnyPos.x,
-                        top: bonnyPos.y
-                    }}>
-                        Bonny
-                    </div>
 
                     {/* Guard */}
                     <div className="Guard" style={{
