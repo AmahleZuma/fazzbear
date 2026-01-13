@@ -62,13 +62,10 @@ export default function doorCheck() {
     // Testing if the function works
     const aniPos = { x: 500, y: 300 }
 
-    // I don't want to duplicate game logic
-    const animatronics = [
-        { name: "Freddy", pos: freddypos },
-        { name: "Foxy", pos: foxyPos },
-        { name: "Chica", pos: chicaPos },
-        { name: "Bonny", pos: bonnyPos }
-    ];
+
+    // State for CCTV footage
+    const [partyCam, setpartyCam] = useState("OFF");
+
 
 
 
@@ -287,6 +284,14 @@ export default function doorCheck() {
                         top: securityPos.y
                     }}>
                         Guard
+                    </div>
+
+                    {/* PartyCam */}
+                    <div className="partyCam" style={{
+                        left: ROOMS.PARTY.x,
+                        top: ROOMS.PARTY.y
+                    }}>
+
                     </div>
 
 

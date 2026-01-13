@@ -98,3 +98,14 @@
     z-index: 10;
     pointer-events: none;
 }
+
+/* CCTV cams */
+
+.partyCam {
+    position: absolute;
+    width: 900px;
+    height: 205px;
+    z-index: 11;
+    pointer-events: none;
+    background: rgb(177, 175, 175);
+}
