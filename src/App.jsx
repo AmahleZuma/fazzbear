@@ -1,9 +1,9 @@
 import Fredscare from './Fredscare.jsx'
-import DoorCheck from './Doorcheck.jsx';
+import SurviveChica from './SurviveChica.jsx';
 
 export default function mountScares() {
   return (
     // <Fredscare />
-    <DoorCheck />
+    <SurviveChica />
   );
 }

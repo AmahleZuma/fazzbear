@@ -21,7 +21,7 @@
 
 
 .security-room {
-    border: 2px solid black;
+    border: 1px solid black;
     padding: 100px;
     width: 190px;
 }
@@ -43,13 +43,13 @@
 .party-area {
     width: 900px;
     height: 204px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .bathroom {
     width: 100px;
     height: 204px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .section3 {
@@ -64,27 +64,27 @@
 .kitchen {
     width: 299px;
     height: 204px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .store-area {
     width: 299px;
     height: 204px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .office {
     width: 295px;
     height: 204px;
-    border: 2px solid black;
+    border: 1px solid black;
     margin-right: 103px;
 }
 
 
 .Chica {
     position:absolute;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     background: rgb(241, 210, 7);
     z-index: 10;
     pointer-events: none;
@@ -106,7 +106,7 @@
     width: 900px;
     height: 205px;
     z-index: 11;
-    border: 2px solid black;
+    border: 1px solid black;
     pointer-events: none;
     background: rgb(177, 175, 175);
 }
@@ -116,7 +116,37 @@
     width: 105px;
     height: 206px;
     z-index: 11;
-    border: 2px solid black;
+    border: 1px solid black;
+    pointer-events: none;
+    background: rgb(177, 175, 175);
+}
+
+.storeCam {
+    position: absolute;
+    width: 305px;
+    height: 204px;
+    z-index: 11;
+    border: 1px solid black;
+    pointer-events: none;
+    background: rgb(177, 175, 175);
+}
+
+.kitchenCam {
+    position: absolute;
+    width: 299px;
+    height: 204px;
+    z-index: 11;
+    border: 1px solid black;
+    pointer-events: none;
+    background: rgb(177, 175, 175);
+}
+
+.officeCam {
+    position: absolute;
+    width: 295px;
+    height: 204px;
+    z-index: 11;
+    border: 1px solid black;
     pointer-events: none;
     background: rgb(177, 175, 175);
 }

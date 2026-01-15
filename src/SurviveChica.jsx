@@ -291,15 +291,41 @@ export default function doorCheck() {
                         left: ROOMS.PARTY.x,
                         top: ROOMS.PARTY.y
                     }}>
-
+                        <p>Party-Area</p>
                     </div>
 
                     {/* Toilet Cam */}
                     <div className="toiletCam" style={{
                         left: ROOMS.TOILET.x,
                         top: ROOMS.TOILET.y
-                    }}></div>
+                    }}>
+                        <p>Toilet</p>
+                        
+                    </div>
 
+                    {/* Store Room Cam */}
+                    <div className="storeCam" style={{
+                        left: ROOMS.STORE.x,
+                        top: ROOMS.STORE.y
+                    }}>
+                        <p>Store-Room</p>
+                    </div>
+
+                    {/* Kitchen Cam */}
+                    <div className="kitchenCam" style={{
+                        left: ROOMS.KITCHEN.x,
+                        top: ROOMS.KITCHEN.y
+                    }}>
+                        <p>Kitchen</p>
+                    </div>
+
+                    {/* Office Cam */}
+                    <div className="officeCam" style={{
+                        left: ROOMS.OFFICE.x,
+                        top: ROOMS.OFFICE.y
+                    }}>
+                        <p>Office</p>
+                    </div>
 
                 </div>
             </>
